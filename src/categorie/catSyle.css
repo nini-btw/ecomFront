@@ -1,0 +1,9 @@
+table td:last-child{
+    height: 50px;
+}
+.box{
+    background-color: #f4f4f4;
+}
+.box form{
+    height: calc(100% - 25%);
+}
