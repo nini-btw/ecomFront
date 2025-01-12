@@ -1,8 +1,10 @@
-function Home(){
-    return(
-        <>
-            <h1 className="text-center my-4">Home</h1>
-        </>
-    )
+import CustomNavBar from "../Components/Ready/Sub/Utilities/CustomNavBar";
+
+function Home() {
+  return (
+    <>
+      <CustomNavBar />
+    </>
+  );
 }
 export default Home;
