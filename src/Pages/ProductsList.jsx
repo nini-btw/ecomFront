@@ -46,6 +46,146 @@ const products = [
       "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
     image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
   },
+  {
+    title: "Green Iguana",
+    price: "$25",
+    description:
+      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
+    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
+  },
+  {
+    title: "Tropical Bird",
+    price: "$30",
+    description:
+      "Tropical birds are known for their vibrant feathers and melodious songs.",
+    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
+  },
+  {
+    title: "Cactus Plant",
+    price: "$15",
+    description:
+      "Cacti are well-known for their ability to store water and thrive in arid climates.",
+    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
+  },
+  {
+    title: "Ocean Coral",
+    price: "$50",
+    description:
+      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
+    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
+  },
+  {
+    title: "Green Iguana",
+    price: "$25",
+    description:
+      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
+    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
+  },
+  {
+    title: "Tropical Bird",
+    price: "$30",
+    description:
+      "Tropical birds are known for their vibrant feathers and melodious songs.",
+    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
+  },
+  {
+    title: "Cactus Plant",
+    price: "$15",
+    description:
+      "Cacti are well-known for their ability to store water and thrive in arid climates.",
+    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
+  },
+  {
+    title: "Ocean Coral",
+    price: "$50",
+    description:
+      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
+    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
+  },
+  {
+    title: "Green Iguana",
+    price: "$25",
+    description:
+      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
+    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
+  },
+  {
+    title: "Tropical Bird",
+    price: "$30",
+    description:
+      "Tropical birds are known for their vibrant feathers and melodious songs.",
+    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
+  },
+  {
+    title: "Cactus Plant",
+    price: "$15",
+    description:
+      "Cacti are well-known for their ability to store water and thrive in arid climates.",
+    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
+  },
+  {
+    title: "Ocean Coral",
+    price: "$50",
+    description:
+      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
+    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
+  },
+  {
+    title: "Green Iguana",
+    price: "$25",
+    description:
+      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
+    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
+  },
+  {
+    title: "Tropical Bird",
+    price: "$30",
+    description:
+      "Tropical birds are known for their vibrant feathers and melodious songs.",
+    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
+  },
+  {
+    title: "Cactus Plant",
+    price: "$15",
+    description:
+      "Cacti are well-known for their ability to store water and thrive in arid climates.",
+    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
+  },
+  {
+    title: "Ocean Coral",
+    price: "$50",
+    description:
+      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
+    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
+  },
+  {
+    title: "Green Iguana",
+    price: "$25",
+    description:
+      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
+    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
+  },
+  {
+    title: "Tropical Bird",
+    price: "$30",
+    description:
+      "Tropical birds are known for their vibrant feathers and melodious songs.",
+    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
+  },
+  {
+    title: "Cactus Plant",
+    price: "$15",
+    description:
+      "Cacti are well-known for their ability to store water and thrive in arid climates.",
+    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
+  },
+  {
+    title: "Ocean Coral",
+    price: "$50",
+    description:
+      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
+    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
+  },
 ];
 
 export default function ProductList() {
