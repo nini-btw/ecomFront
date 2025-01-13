@@ -1,21 +1,26 @@
-import { Box, Drawer, Button, Container } from "@mui/material";
+import { Box, Drawer, Container } from "@mui/material";
 import CustomNavBar from "../Components/Ready/Sub/Utilities/CustomNavBar";
 import CustomDrawer from "../Components/CustomDrawer";
-import { useState } from "react";
 import ProductList from "./ProductsList";
+import { useSelector } from "react-redux";
+import { displayDrawer } from "../redux/slices/drawerSlice";
+import { useDispatch } from "react-redux";
 
 function Home() {
-  const [open, setOpen] = useState(false);
-
+  const isDrawerOpen = useSelector((state) => state.drawer);
+  const dispatch = useDispatch();
   return (
     <>
       <CustomNavBar />
       <Box sx={{ mt: 10 }}>
-        <Drawer open={open} onClose={() => setOpen(false)}>
-          <CustomDrawer toggleDrawer={() => setOpen(false)} />
+        <Drawer
+          anchor="left"
+          open={isDrawerOpen}
+          onClose={() => dispatch(displayDrawer())}
+        >
+          <CustomDrawer />
         </Drawer>
         <Container>
-          <Button onClick={() => setOpen(true)}>Open Drawer</Button>
           <ProductList />
         </Container>
       </Box>

@@ -5,7 +5,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import Divider from "@mui/material/Divider";
 import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -14,10 +13,10 @@ import CustomSearchBar from "../Utilities/CustomSearchBar";
 import { SitemarkIcon } from "../Registration/CustomIcons";
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import Select from "@mui/material/Select";
-import { useState } from "react";
-import { Container, Typography } from "@mui/material";
-import { MenuItem as DropdownItem } from "@mui/material";
+import { Container } from "@mui/material";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import { displayDrawer } from "../../../../redux/slices/drawerSlice";
+import { useDispatch } from "react-redux";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -37,34 +36,10 @@ export default function CustomNavBar() {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme(); // Access the current theme
   const strokeColor = theme.palette.mode === "dark" ? "#fff" : "#000";
-
-  const [filtersVisible, setFiltersVisible] = useState(false);
-  const [filters, setFilters] = useState({
-    year: "",
-    type: "",
-    faculty: "",
-  });
-
-  const handleToggleFilters = () => {
-    setFiltersVisible((prev) => !prev);
-  };
-
-  const handleFilterChange = (filterType) => (event) => {
-    setFilters((prev) => ({
-      ...prev,
-      [filterType]: event.target.value,
-    }));
-  };
-
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
-
-  const filtersList = [
-    { name: "Year", values: ["2020", "2021", "2022", "2023"] },
-    { name: "Type", values: ["Academic", "Non-Academic"] },
-    { name: "Faculty", values: ["Engineering", "Arts", "Business"] },
-  ];
+  const dispatch = useDispatch();
 
   return (
     <AppBar
@@ -88,6 +63,18 @@ export default function CustomNavBar() {
           >
             <SitemarkIcon strokeColor={strokeColor} />
             <CustomSearchBar />
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <IconButton
+                onClick={() => dispatch(displayDrawer())}
+                size="small"
+                sx={{
+                  color: (theme) => theme.palette.text.primary,
+                  backgroundColor: (theme) => theme.palette.background.paper,
+                }}
+              >
+                <FilterListIcon />
+              </IconButton>
+            </Box>
           </Box>
           <Box
             sx={{
@@ -146,39 +133,7 @@ export default function CustomNavBar() {
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
-                <MenuItem onClick={handleToggleFilters}>FILTER</MenuItem>
-                <Divider sx={{ my: 3 }} />
-                {filtersVisible && (
-                  <Box sx={{ mt: 3 }}>
-                    {filtersList.map((filter, index) => (
-                      <Box
-                        key={index}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          mb: 2,
-                        }}
-                      >
-                        <Typography>{filter.name}</Typography>
-                        <Select
-                          value={filters[filter.name.toLowerCase()]}
-                          onChange={handleFilterChange(
-                            filter.name.toLowerCase()
-                          )}
-                          sx={{ width: "50%" }}
-                        >
-                          {filter.values.map((value, idx) => (
-                            <DropdownItem key={idx} value={value}>
-                              {value}
-                            </DropdownItem>
-                          ))}
-                        </Select>
-                      </Box>
-                    ))}
-                  </Box>
-                )}
-
+                <MenuItem>FILTER</MenuItem>
                 <MenuItem>
                   <Box sx={{ width: "100%" }}>
                     <Link to="signUp">

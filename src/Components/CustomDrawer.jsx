@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import {
+/* import PropTypes from "prop-types";
+ */ import {
   Box,
   List,
   Divider,
@@ -11,7 +11,7 @@ import {
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 
-const CustomDrawer = ({ toggleDrawer }) => {
+const CustomDrawer = () => {
   const menuItems = [
     { label: "Inbox", icon: <InboxIcon /> },
     { label: "Starred", icon: <MailIcon /> },
@@ -26,7 +26,7 @@ const CustomDrawer = ({ toggleDrawer }) => {
   ];
 
   return (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer}>
+    <Box sx={{ width: 250 }} role="presentation">
       <List>
         {menuItems.map((item) => (
           <ListItem key={item.label} disablePadding>
@@ -53,8 +53,8 @@ const CustomDrawer = ({ toggleDrawer }) => {
 };
 
 // Prop validation
-CustomDrawer.propTypes = {
+/* CustomDrawer.propTypes = {
   toggleDrawer: PropTypes.func.isRequired, // toggleDrawer must be a function and is required
-};
+}; */
 
 export default CustomDrawer;
