@@ -5,6 +5,7 @@ import ProductList from "./ProductsList";
 import { useSelector } from "react-redux";
 import { displayDrawer } from "../redux/slices/drawerSlice";
 import { useDispatch } from "react-redux";
+import { clearFilter } from "../redux/slices/filterSlice";
 
 function Home() {
   const isDrawerOpen = useSelector((state) => state.drawer);
@@ -16,7 +17,10 @@ function Home() {
         <Drawer
           anchor="left"
           open={isDrawerOpen}
-          onClose={() => dispatch(displayDrawer())}
+          onClose={() => {
+            dispatch(displayDrawer());
+            dispatch(clearFilter());
+          }}
         >
           <CustomDrawer />
         </Drawer>

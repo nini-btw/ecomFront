@@ -12,6 +12,7 @@ import { styled } from "@mui/material/styles";
 import { SitemarkIcon } from "./Sub/Registration/CustomIcons";
 import { useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -65,8 +66,9 @@ export default function Register() {
   const [nameError, setNameError] = useState(false);
   const [nameErrorMessage, setNameErrorMessage] = useState("");
 
-  const theme = useTheme(); // Access the current theme
+  const theme = useTheme();
   const strokeColor = theme.palette.mode === "dark" ? "#fff" : "#000";
+  const navigate = useNavigate();
 
   const validateInputs = () => {
     const email = document.getElementById("email");
@@ -93,10 +95,10 @@ export default function Register() {
       setPasswordError(false);
       setPasswordErrorMessage("");
     }
-    //Password Check
+
     if (!passwordConfirm || password.value !== passwordConfirm.value) {
       setPasswordCheck(true);
-      setPasswordCheckMessage("Password not matched");
+      setPasswordCheckMessage("Passwords do not match.");
       isValid = false;
     } else {
       setPasswordCheck(false);
@@ -115,18 +117,43 @@ export default function Register() {
     return isValid;
   };
 
-  const handleSubmit = (event) => {
-    if (nameError || emailError || passwordError || passwordCheck) {
-      event.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!validateInputs()) {
       return;
     }
+
     const data = new FormData(event.currentTarget);
-    console.log({
-      name: data.get("name"),
-      lastName: data.get("lastName"),
+
+    const payload = {
+      fullName: data.get("name"),
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Registration failed.");
+      }
+
+      const result = await response.json();
+      console.log("User registered successfully:", result);
+      alert("Registration successful!");
+      navigate("/productList");
+    } catch (error) {
+      console.error("Error registering user:", error.message);
+      alert(error.message || "Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -158,7 +185,6 @@ export default function Register() {
                 placeholder="Jon Snow"
                 error={nameError}
                 helperText={nameErrorMessage}
-                color={nameError ? "error" : "primary"}
               />
             </FormControl>
             <FormControl>
@@ -173,7 +199,6 @@ export default function Register() {
                 variant="outlined"
                 error={emailError}
                 helperText={emailErrorMessage}
-                color={passwordError ? "error" : "primary"}
               />
             </FormControl>
             <FormControl>
@@ -189,7 +214,6 @@ export default function Register() {
                 variant="outlined"
                 error={passwordError}
                 helperText={passwordErrorMessage}
-                color={passwordError ? "error" : "primary"}
               />
             </FormControl>
             <FormControl>
@@ -205,15 +229,9 @@ export default function Register() {
                 variant="outlined"
                 error={passwordCheck}
                 helperText={passwordCheckMessage}
-                color={passwordCheck ? "error" : "primary"}
               />
             </FormControl>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              onClick={validateInputs}
-            >
+            <Button type="submit" fullWidth variant="contained">
               Register
             </Button>
           </Box>
@@ -221,7 +239,7 @@ export default function Register() {
             <Typography sx={{ textAlign: "center" }}>
               Already have an account?{" "}
               <Link
-                href="/material-ui/getting-started/templates/sign-in/"
+                href="/sign-in"
                 variant="body2"
                 sx={{ alignSelf: "center" }}
               >

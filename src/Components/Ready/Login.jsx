@@ -15,6 +15,7 @@ import { styled } from "@mui/material/styles";
 import ForgotPassword from "./Sub/Registration/ForgotPassword";
 import { SitemarkIcon } from "./Sub/Registration/CustomIcons";
 import { useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -63,6 +64,7 @@ export default function Login() {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const theme = useTheme(); // Access the current theme
   const strokeColor = theme.palette.mode === "dark" ? "#fff" : "#000";
@@ -75,16 +77,46 @@ export default function Login() {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
+  const handleSubmit = async (event) => {
+    // Validate inputs
+    event.preventDefault();
+    if (!validateInputs()) {
       return;
     }
+
+    // Collect form data
     const data = new FormData(event.currentTarget);
-    console.log({
+    const payload = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+    try {
+      // Send request to the backend
+      const response = await fetch("http://localhost:3000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to log in. Please check your credentials.");
+      }
+
+      const result = await response.json();
+      console.log("Login successful:", result);
+
+      // Handle successful login
+      // e.g., save token to localStorage or Redux
+      localStorage.setItem("token", result.token);
+      // Redirect to another page, if needed
+      navigate("/productList");
+    } catch (error) {
+      console.error("Login error:", error.message);
+      setEmailError(true);
+      setEmailErrorMessage(error.message);
+    }
   };
 
   const validateInputs = () => {

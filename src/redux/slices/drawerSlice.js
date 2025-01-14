@@ -9,6 +9,6 @@ export const drawerSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { displayDrawer, openDrawer, closeDrawer } = drawerSlice.actions;
+export const { displayDrawer } = drawerSlice.actions;
 
 export default drawerSlice.reducer;

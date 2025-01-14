@@ -4,8 +4,8 @@ import { Card, Typography, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import CardActionArea from "@mui/material/CardActionArea";
 import CardActions from "@mui/material/CardActions";
+import { useEffect, useState } from "react";
 
 // Styled Card
 const StyledCard = styled(Card)(() => ({
@@ -17,180 +17,25 @@ const StyledCard = styled(Card)(() => ({
 }));
 
 // Products Array
-const products = [
-  {
-    title: "Green Iguana",
-    price: "$25",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
-    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
-  },
-  {
-    title: "Tropical Bird",
-    price: "$30",
-    description:
-      "Tropical birds are known for their vibrant feathers and melodious songs.",
-    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
-  },
-  {
-    title: "Cactus Plant",
-    price: "$15",
-    description:
-      "Cacti are well-known for their ability to store water and thrive in arid climates.",
-    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
-  },
-  {
-    title: "Ocean Coral",
-    price: "$50",
-    description:
-      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
-    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
-  },
-  {
-    title: "Green Iguana",
-    price: "$25",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
-    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
-  },
-  {
-    title: "Tropical Bird",
-    price: "$30",
-    description:
-      "Tropical birds are known for their vibrant feathers and melodious songs.",
-    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
-  },
-  {
-    title: "Cactus Plant",
-    price: "$15",
-    description:
-      "Cacti are well-known for their ability to store water and thrive in arid climates.",
-    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
-  },
-  {
-    title: "Ocean Coral",
-    price: "$50",
-    description:
-      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
-    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
-  },
-  {
-    title: "Green Iguana",
-    price: "$25",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
-    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
-  },
-  {
-    title: "Tropical Bird",
-    price: "$30",
-    description:
-      "Tropical birds are known for their vibrant feathers and melodious songs.",
-    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
-  },
-  {
-    title: "Cactus Plant",
-    price: "$15",
-    description:
-      "Cacti are well-known for their ability to store water and thrive in arid climates.",
-    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
-  },
-  {
-    title: "Ocean Coral",
-    price: "$50",
-    description:
-      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
-    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
-  },
-  {
-    title: "Green Iguana",
-    price: "$25",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
-    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
-  },
-  {
-    title: "Tropical Bird",
-    price: "$30",
-    description:
-      "Tropical birds are known for their vibrant feathers and melodious songs.",
-    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
-  },
-  {
-    title: "Cactus Plant",
-    price: "$15",
-    description:
-      "Cacti are well-known for their ability to store water and thrive in arid climates.",
-    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
-  },
-  {
-    title: "Ocean Coral",
-    price: "$50",
-    description:
-      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
-    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
-  },
-  {
-    title: "Green Iguana",
-    price: "$25",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
-    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
-  },
-  {
-    title: "Tropical Bird",
-    price: "$30",
-    description:
-      "Tropical birds are known for their vibrant feathers and melodious songs.",
-    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
-  },
-  {
-    title: "Cactus Plant",
-    price: "$15",
-    description:
-      "Cacti are well-known for their ability to store water and thrive in arid climates.",
-    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
-  },
-  {
-    title: "Ocean Coral",
-    price: "$50",
-    description:
-      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
-    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
-  },
-  {
-    title: "Green Iguana",
-    price: "$25",
-    description:
-      "Lizards are a widespread group of squamate reptiles, with over 6,000 species.",
-    image: "https://via.placeholder.com/300x140.png?text=Green+Iguana",
-  },
-  {
-    title: "Tropical Bird",
-    price: "$30",
-    description:
-      "Tropical birds are known for their vibrant feathers and melodious songs.",
-    image: "https://via.placeholder.com/300x140.png?text=Tropical+Bird",
-  },
-  {
-    title: "Cactus Plant",
-    price: "$15",
-    description:
-      "Cacti are well-known for their ability to store water and thrive in arid climates.",
-    image: "https://via.placeholder.com/300x140.png?text=Cactus+Plant",
-  },
-  {
-    title: "Ocean Coral",
-    price: "$50",
-    description:
-      "Corals are marine invertebrates that play a vital role in ocean ecosystems.",
-    image: "https://via.placeholder.com/300x140.png?text=Ocean+Coral",
-  },
-];
 
 export default function ProductList() {
+  const [products, setProducts] = useState([]);
+
+  const getAllProducts = () => {
+    fetch("http://localhost:3000/api/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data.data.products);
+      });
+  };
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
+  console.log(products);
   return (
-    <Box>
+    <Box sx={{ mt: "7rem" }}>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -199,7 +44,7 @@ export default function ProductList() {
         {products.map((product, index) => (
           <Grid key={index} size={{ xs: 2, sm: 3, md: 3 }}>
             <StyledCard>
-              <CardActionArea>
+              <>
                 <Box
                   sx={{
                     width: 100,
@@ -213,8 +58,8 @@ export default function ProductList() {
                 >
                   <CardMedia
                     component="img"
-                    src={product.image}
-                    alt={product.title}
+                    src={product.picture}
+                    alt={product.name}
                     sx={{
                       maxWidth: "100%",
                       maxHeight: "100%",
@@ -223,20 +68,14 @@ export default function ProductList() {
                   />
                 </Box>
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {product.title}
+                  <Typography gutterBottom variant="h6" component="div">
+                    {product.name}
                   </Typography>
-                  <Typography variant="body1" color="text.primary">
+                  <Typography variant="h5" color="text.primary">
                     {product.price}
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "text.secondary", mt: 1 }}
-                  >
-                    {product.description}
-                  </Typography>
                 </CardContent>
-              </CardActionArea>
+              </>
               <CardActions>
                 <Button size="small" color="primary">
                   View

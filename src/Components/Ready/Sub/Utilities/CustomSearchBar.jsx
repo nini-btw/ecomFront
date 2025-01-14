@@ -29,7 +29,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: "1rem",
-  border: `2px solid ${theme.palette.background.extra}`,
+  border: `2px solid #000`,
   backgroundColor: theme.palette.background.default,
   "&:hover": {
     backgroundColor: theme.palette.background.default,
